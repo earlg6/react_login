@@ -70,7 +70,7 @@ body {
     cursor: pointer;
 }
 .link-button:hover {
-    border: 2px solid #ffcc01;
+    border: 2px solid #ffcc00;
     border-radius: 5px;
     transition: 0.6s;
 }
