@@ -199,3 +199,83 @@ button {
 .line {
     display: inline-block;
 }
+
+/* TipTap Styles */
+
+.menu-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+}
+.menu-bar button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+button.is-active {
+    background: #63636385;
+}
+
+.ProseMirror {
+    padding: 10px;
+    background: #fff;
+    margin-top: 10px;
+    min-height: 300px;
+    color: black;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+.ProseMirror    > * + * {
+      margin-top: 0.75em;
+    }
+  
+    .ProseMirror ul,
+    .ProseMirror ol {
+      padding: 0 1rem;
+    }
+  
+    .ProseMirror h1,
+    .ProseMirror h2,
+    .ProseMirror h3,
+    .ProseMirror h4,
+    .ProseMirror h5,
+    .ProseMirror h6 {
+      line-height: 1.1;
+    }
+  
+    .ProseMirror code {
+      background-color: rgba(#616161, 0.1);
+      color: #616161;
+    }
+  
+    .ProseMirror pre {
+      background: #0D0D0D;
+      color: #FFF;
+      font-family: 'JetBrainsMono', monospace;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+    }
+    .ProseMirror pre code {
+        color: inherit;
+        padding: 0;
+        background: none;
+        font-size: 0.8rem;
+      }
+    
+  
+      .ProseMirror img {
+      max-width: 100%;
+      height: auto;
+    }
+  
+    .ProseMirror blockquote {
+      padding-left: 1rem;
+      border-left: 2px solid black;
+    }
+  
+    .ProseMirror hr {
+      border: none;
+      border-top: 2px solid rgba(#0D0D0D, 0.1);
+      margin: 2rem 0;
+    }
+  

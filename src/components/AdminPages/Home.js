@@ -44,8 +44,9 @@ const Home = () => {
                 <h3>Hello {username}!</h3>
                 <p>You are logged in!</p>
                 <br />
-                <Link to="media_manager">Media Manager</Link>
                 <Link to="register">Register new account</Link>
+                <Link to="media_manager">Media Manager</Link>
+                <Link to="create_new_post">Create new post</Link>
                 <div className="flexGrow">
                     <button onClick={logout} className="regButton">Sign Out</button>
                 </div>

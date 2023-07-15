@@ -6,6 +6,7 @@ import Missing from './components/Missing';
 import Home from './components/AdminPages/Home';
 import MediaManager from './components/AdminPages/MediaManager';
 import RequireAuth from './components/RequireAuth';
+import CreateNewPost from './components/AdminPages/CreateNewPost';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="admin" element={<Home />}>
               <Route path="media_manager" element={<MediaManager />} />
               <Route path="register" element={<Register />} />
+              <Route path="create_new_post" element={<CreateNewPost />} /> 
             </Route>
           </Route>
         </Route>
