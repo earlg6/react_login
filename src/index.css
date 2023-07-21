@@ -163,6 +163,17 @@ button {
     right: 15px;
     display: none;
 }
+.add-icon {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    display: none;
+}
+.image-container:hover .add-icon {
+    display: block;
+    cursor: pointer;
+    transition: 55ms;
+}
 .image-container:hover .delete-icon {
     display: block;
     cursor: pointer;

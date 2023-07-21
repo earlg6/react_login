@@ -1,18 +1,30 @@
 import { Color } from '@tiptap/extension-color'
 import ListItem from '@tiptap/extension-list-item'
 import TextStyle from '@tiptap/extension-text-style'
+import Image from '@tiptap/extension-image'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 import TextAlign from '@tiptap/extension-text-align'
-import React from 'react'
-import {FaBold, FaItalic, FaStrikethrough, FaHeading, FaListOl, FaListUl, FaQuoteLeft,
-FaRedo, FaUndo, FaUnderline, FaAlignLeft, FaAlignRight, FaAlignCenter } from 'react-icons/fa';
+import React, { useCallback } from 'react'
+import {FaBold, FaItalic, FaStrikethrough, FaListOl, FaListUl, FaQuoteLeft,
+FaRedo, FaUndo, FaUnderline, FaAlignLeft, FaAlignRight, FaAlignCenter, FaImage } from 'react-icons/fa';
 
 const MenuBar = ({ editor }) => {
+
+  const addImage = useCallback(() => {
+    const url = window.prompt('URL');
+
+    if (url) {
+      editor.chain().focus().setImage({ src: url }).run();
+    }
+  }, [editor]);
+
   if (!editor) {
     return null
   }
+
+  
 
   return (
     <div className='menu-bar'>
@@ -155,7 +167,15 @@ const MenuBar = ({ editor }) => {
         <FaAlignRight/>
       </button>
       </div>
+
       <div>
+        <button onClick={addImage}>
+          <FaImage/>
+        </button>
+      </div>
+
+      <div>
+
 
       <button
         onClick={() => editor.chain().focus().undo().run()}
@@ -190,6 +210,7 @@ const MenuBar = ({ editor }) => {
   )
 }
 
+
 const TipTap = () => {
   const editor = useEditor({
     extensions: [
@@ -206,12 +227,14 @@ const TipTap = () => {
         },
       }),
       Underline,
+      Image,
       TextAlign.configure({
         types: ['heading', 'paragraph'],
       })
     ],
     content: ``,
   })
+  
 
   return (
     <div className='text-editor'>

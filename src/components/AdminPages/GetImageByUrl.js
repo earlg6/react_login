@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { faTrashCan, faAdd } from '@fortawesome/free-solid-svg-icons'
 import axios from '../../api/axios';
 
 export default function GetImageByUrl({urlSrc, itemId, onImageDelete}) {
@@ -20,6 +20,7 @@ export default function GetImageByUrl({urlSrc, itemId, onImageDelete}) {
         <div className="image-container">
         <img src={urlSrc} className="one-image"/>
         <span className="delete-icon" onClick={handleDelete}><FontAwesomeIcon icon={faTrashCan}/></span>
+        <span className="add-icon"><FontAwesomeIcon icon={faAdd}/></span>
         </div>
   )
 }
