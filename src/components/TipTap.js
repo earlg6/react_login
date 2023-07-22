@@ -6,25 +6,20 @@ import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 import TextAlign from '@tiptap/extension-text-align'
-import React, { useCallback } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
+import Modal from './Modal/Modal'
 import {FaBold, FaItalic, FaStrikethrough, FaListOl, FaListUl, FaQuoteLeft,
 FaRedo, FaUndo, FaUnderline, FaAlignLeft, FaAlignRight, FaAlignCenter, FaImage } from 'react-icons/fa';
+import axios from '../api/axios';
+import GetImageByUrl from './AdminPages/GetImageByUrl'
 
-const MenuBar = ({ editor }) => {
+const PHOTO_URL = '/admin/photo';
 
-  const addImage = useCallback(() => {
-    const url = window.prompt('URL');
-
-    if (url) {
-      editor.chain().focus().setImage({ src: url }).run();
-    }
-  }, [editor]);
+const MenuBar = ({ editor, setModalActive }) => {
 
   if (!editor) {
     return null
   }
-
-  
 
   return (
     <div className='menu-bar'>
@@ -169,7 +164,7 @@ const MenuBar = ({ editor }) => {
       </div>
 
       <div>
-        <button onClick={addImage}>
+        <button onClick={() => { setModalActive(true);}}>
           <FaImage/>
         </button>
       </div>
@@ -207,6 +202,8 @@ const MenuBar = ({ editor }) => {
 
     </div>
     
+    
+
   )
 }
 
@@ -234,12 +231,48 @@ const TipTap = () => {
     ],
     content: ``,
   })
+
   
+  const [selectedImageUrl, setSelectedImageUrl] = useState('');
+  const [modalActive, setModalActive] = useState(false);
+  const [photosArray, setPhotosArray] = useState([]);
+  
+    const access_token = localStorage.getItem('access_token');
+    const headers = {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${access_token}`
+    }
+    const getPhotos = async () => {
+        const { data } = await axios.get(PHOTO_URL, {
+            headers: {...headers}
+        });
+        setPhotosArray(data.data);
+      };
+
+    useEffect(() => {
+        getPhotos()
+    }, [])  
+    
+    const handleImageSelect = (selectedUrl) => {
+      setSelectedImageUrl(selectedUrl);
+      editor.chain().focus().setImage({ src: selectedUrl }).run();
+      setModalActive(false);
+    };
 
   return (
     <div className='text-editor'>
-      <MenuBar editor={editor} />
+      <MenuBar editor={editor} setModalActive={setModalActive} selectedImageUrl={selectedImageUrl} handleImageSelect={handleImageSelect}/>
       <EditorContent editor={editor} />
+      <Modal active={modalActive} setActive={setModalActive}>
+                {photosArray.map((item) => (
+                <GetImageByUrl  urlSrc={item.file_url} 
+                                key={item.id} 
+                                itemId={item.id}
+                                onImageSelect={handleImageSelect}
+                />
+                ))
+                }
+      </Modal>
     </div>
   )
 }

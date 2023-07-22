@@ -157,6 +157,26 @@ button {
     height: 100%;
     object-fit: cover;
 }
+@keyframes ColorChange {
+    0% {
+        color: black;
+    }
+    25% {
+        color: white;
+    }
+    50% {
+        color: black;
+    }
+    75% {
+        color: white;
+    }
+    100% {
+        color: black;
+    }
+}
+.image-container span{
+    animation: ColorChange 2s ease-in-out infinite;
+}
 .delete-icon {
     position: absolute;
     top: 15px;
@@ -169,10 +189,13 @@ button {
     right: 15px;
     display: none;
 }
-.image-container:hover .add-icon {
+.modal__content .image-container:hover .add-icon {
     display: block;
     cursor: pointer;
     transition: 55ms;
+}
+.modal__content .image-container:hover .delete-icon {
+    display: none;
 }
 .image-container:hover .delete-icon {
     display: block;

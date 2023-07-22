@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import Tiptap from '../TipTap'
 
 export default function CreateNewPost() {
+
+
     return (
         <div className="main">
             <div className="admin-header">

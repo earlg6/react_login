@@ -5,7 +5,7 @@ import axios from "../../api/axios";
 
 const PHOTO_URL = '/admin/photo';
 
-const Profile = () => {
+const MediaManager = () => {
 
     const [image, setImage] = useState('');
     const [inputKey, setInputKey] = useState(Date.now());
@@ -90,4 +90,4 @@ const Profile = () => {
     )
 }
 
-export default Profile
+export default MediaManager
