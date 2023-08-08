@@ -74,6 +74,10 @@ body {
     border-radius: 5px;
     transition: 0.6s;
 }
+.link-button:active {
+    transform: scale(0.95);
+    transition: 55ms;
+}
 h3 {
     overflow-wrap: break-word;
 }
